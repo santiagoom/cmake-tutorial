@@ -19,3 +19,5 @@ gpu-config.txt
 data/
 log/
 cache/
+cmake-build-debug
+CMakeFiles
