@@ -201,7 +201,32 @@ target_compile_definitions(<target>
 Specifies compile definitions to use when compiling a given <target>. The named <target> must have been created by a command such as add_executable() or add_library() and must not be an ALIAS target.
 
 ```
+## add_custom_command
 
+```
+Add a custom build rule to the generated build system.
+
+There are two main signatures for add_custom_command.
+
+Generating Files
+The first signature is for adding a custom command to produce an output:
+
+add_custom_command(OUTPUT output1 [output2 ...]
+                   COMMAND command1 [ARGS] [args1...]
+                   [COMMAND command2 [ARGS] [args2...] ...]
+                   [MAIN_DEPENDENCY depend]
+                   [DEPENDS [depends...]]
+                   [BYPRODUCTS [files...]]
+                   [IMPLICIT_DEPENDS <lang1> depend1
+                                    [<lang2> depend2] ...]
+                   [WORKING_DIRECTORY dir]
+                   [COMMENT comment]
+                   [DEPFILE depfile]
+                   [JOB_POOL job_pool]
+                   [VERBATIM] [APPEND] [USES_TERMINAL]
+                   [COMMAND_EXPAND_LISTS])
+This defines a command to generate specified OUTPUT file(s). A target created in the same directory (CMak
+```
 
 
 # parameter
