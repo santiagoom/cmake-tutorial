@@ -228,7 +228,27 @@ add_custom_command(OUTPUT output1 [output2 ...]
 This defines a command to generate specified OUTPUT file(s). A target created in the same directory (CMak
 ```
 
+## target_link_libraries
+```
+Contents
+target_link_libraries
+Overview
+Libraries for a Target and/or its Dependents
+Libraries for both a Target and its Dependents
+Libraries for a Target and/or its Dependents (Legacy)
+Libraries for Dependents Only (Legacy)
+Linking Object Libraries
+Cyclic Dependencies of Static Libraries
+Creating Relocatable Packages
+Specify libraries or flags to use when linking a given target and/or its dependents. Usage requirements from linked library targets will be propagated. Usage requirements of a target’s dependencies affect compilation of its own sources.
+```
 
+##  Package Layout
+```
+
+A config-file package consists of a Package Configuration File and optionally a Package Version File provided with the project distribution.
+
+```
 # parameter
 ## PROJECT_SOURCE_DIR
 ```
@@ -247,3 +267,59 @@ This is the binary directory of the most recent project() command.
 ```
 https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html?highlight=project_binary_dir
 ```
+## CMAKE_PREFIX_PATH
+```
+CMAKE_PREFIX_PATH¶
+Semicolon-separated list of directories specifying installation prefixes to be searched by the find_package(), find_program(), find_library(), find_file(), and find_path() commands. Each command will add appropriate subdirectories (like bin, lib, or include) as specified in its own documentation.
+
+By default this is empty. It is intended to be set by the project.
+
+See also CMAKE_SYSTEM_PREFIX_PATH, CMAKE_INCLUDE_PATH, CMAKE_LIBRARY_PATH, CMAKE_PROGRAM_PATH, and CMAKE_IGNORE_PATH.
+
+
+
+
+
+The environment variable CMAKE_PREFIX_PATH may also be populated with prefixes to search for packages. Like the PATH environment variable, this is a list and needs to use the platform-specific environment variable list item separator (: on Unix and ; on Windows).
+```
+
+
+Libraries not Providing Config-file Packages
+```
+Third-party libraries which do not provide config-file packages can still be found with the find_package() command, if a FindSomePackage.cmake file is available.
+
+These module-file packages are different to config-file packages in that:
+
+They should not be provided by the third party, except perhaps in the form of documentation
+
+The availability of a Find<PackageName>.cmake file does not indicate the availability of the binaries themselves.
+
+CMake does not search the CMAKE_PREFIX_PATH for Find<PackageName>.cmake files. Instead CMake searches for such files in the CMAKE_MODULE_PATH variable. It is common for users to set the CMAKE_MODULE_PATH when running CMake, and it is common for CMake projects to append to CMAKE_MODULE_PATH to allow use of local module-file packages.
+
+CMake ships Find<PackageName>.cmake files for some third party packages for convenience in cases where the third party does not provide config-file packages directly. These files are a maintenance burden for CMake, so new Find modules are generally not added to CMake anymore. Third-parties should provide config file packages instead of relying on a Find module to be provided by CMake.
+
+Module-file packages may also provide Imported Targets. A complete example which finds such a package might look like
+
+Module-file packages may also provide Imported Targets. A complete example which finds such a package might look like:
+
+cmake_minimum_required(VERSION 3.10)
+project(MyExeProject VERSION 1.0.0)
+
+find_package(PNG REQUIRED)
+
+# Add path to a FindSomePackage.cmake file
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+find_package(SomePackage REQUIRED)
+
+add_executable(MyExe main.cpp)
+target_link_libraries(MyExe PRIVATE
+    PNG::PNG
+    SomePrefix::LibName
+)
+The <PackageName>_ROOT variable is also searched as a prefix for find_package() calls using module-file packages such as FindSomePackage.
+
+```
+
+
+
+

@@ -21,3 +21,5 @@ log/
 cache/
 cmake-build-debug
 CMakeFiles
+
+temp*
