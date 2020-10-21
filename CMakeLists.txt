@@ -19,6 +19,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 #add_subdirectory(tutorial/Step8)
 #add_subdirectory(tutorial/Step9)
 #add_subdirectory(tutorial/Step10)
-add_subdirectory(tutorial/Step11)
+#add_subdirectory(tutorial/Step11)
+#add_subdirectory(tutorial/Step12)
+add_subdirectory(tutorial/Complete)
 
 
