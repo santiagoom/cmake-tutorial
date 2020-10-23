@@ -1,0 +1,31 @@
+ImportMhd m_importImage
+ExportDir m_outputDir
+GenerateResampleMhd m_mhdResampleGenerate
+NewSpacingX labelSpaX
+NewSpacingY labelSpaY
+NewSpacingZ labelSpaZ
+
+m_stl2mhd
+
+m_spaX
+m_spaY
+m_spaZ
+m_resampleMethod
+
+LinearInterpoltion
+NearestNeighbor
+TriangleConvolution
+
+
+m_linearInterpoltion
+m_nearestNeighbor
+m_triangleConvolution
+
+
+OriginDir m_originDir
+ReferenceDir m_referenceDir
+OutpurDir m_outpurDir
+BatchGenerate m_batchGenerate
+
+
+
